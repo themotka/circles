@@ -2,14 +2,14 @@ import sys
 
 from PyQt5.QtGui import QPainter, QColor
 from random import randint
-from PyQt5 import uic
+from UI import Ui_MainWindow
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.do_paint = False
         self.pushButton.clicked.connect(self.painter)
 
@@ -29,7 +29,7 @@ class MyWidget(QMainWindow):
 
     def draw_flag(self, qp):
         # Задаем кисть
-        qp.setBrush(QColor('#fff000'))
+        qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
         # Рисуем прямоугольник заданной кистью
         qp.begin(self)
         r = randint(200, 500)
